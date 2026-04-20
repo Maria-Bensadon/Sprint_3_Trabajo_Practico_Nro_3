@@ -61,10 +61,12 @@ export async function obtenerSuperheroePorIdController(req, res) {
       return res.status(404).send({ mensaje: `Superhéroe no encontrado` });
     }
 
+    // VISTA -------------------------------------------------
     // utiliza una funcion de la capa vista
-    const superheroeFormateado = renderizarSuperheroe(superheroe);
-    // la respuesta esta en funcion del status. si es OK, se muestra el superheroe
-    res.status(200).json(superheroeFormateado);
+    // const superheroeFormateado = renderizarSuperheroe(superheroe);
+    // // la respuesta esta en funcion del status. si es OK, se muestra el superheroe
+    // res.status(200).json(superheroeFormateado);
+    res.render('dashboard', { superheroes });
 
   }
 
@@ -93,10 +95,9 @@ export async function obtenerTodosLosSuperheroesController(req, res) {
   try {
 
     const superheroes = await obtenerTodosLosSuperheroes();
-
-    const superheroesFormateados = renderizarListaSuperheroes(superheroes);
-    res.status(200).json(superheroesFormateados);
-
+    // const superheroesFormateados = renderizarListaSuperheroes(superheroes);
+    // res.status(200).json(superheroesFormateados);
+    res.render('dashboard', { superheroes });
     // no faltaria el error 404???
 
   }
@@ -185,11 +186,31 @@ export async function obtenerSuperheroesMayoresDe30Controller(req, res) {
 export async function crearSuperheroeController(req, res) {
 
   try {
-    
+
+    console.log('Body recibido:', req.body); // agregá esto
+
     const datos = req.body;
+
+    /*
+      la informacion llega como texto (String), la funcion split()
+      separa las palabras por "," y el metodo map elimina los espacios 
+      en blanco (.trim()); 
+    */
+    if (typeof datos.poderes === "string") {
+      datos.poderes = datos.poderes.split(",").map(p => p.trim());
+    }
+
+    if (typeof datos.aliados === "string") {
+      datos.aliados = datos.aliados.split(",").map(p => p.trim());
+    }
+
+    if (typeof datos.enemigos === "string") {
+      datos.enemigos = datos.enemigos.split(",").map(p => p.trim());
+    }
 
     // Se busca el superheroe
     const superheroe = await crearSuperheroe(datos);
+    console.log('Superhéroe creado:', superheroe);
 
     // error 404
     if (!superheroe) {
@@ -199,8 +220,7 @@ export async function crearSuperheroeController(req, res) {
     }
 
     // 200 OK
-    const superheroeFormateado = renderizarSuperheroe(superheroe);
-    res.status(200).json(superheroeFormateado);
+    res.redirect('/api/heroes');
   }
 
   catch (error) {

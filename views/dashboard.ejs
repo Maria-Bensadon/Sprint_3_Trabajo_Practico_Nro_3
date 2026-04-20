@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang=" en ">
+
+<head>
+    <meta charset=" UTF-8 ">
+    <title>DB Superheroes</title>
+</head>
+
+<body>
+    <h1>Lista de Superheroes</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nombre Superheroe</th>
+                <th>Nombre real</th>
+                <th>Edad</th>
+                <th>Planeta de Origen</th>
+                <th>Debilidad</th>
+                <th>Poderes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% superheroes.forEach(heroe=> {%>
+                <tr>
+                    <td>
+                        <%= heroe.nombreSuperHeroe %>
+                    </td>
+                    <td>
+                        <%= heroe.nombreReal%>
+                    </td>
+                    <td>
+                        <%= heroe.edad %>
+                    </td>
+                    <td>
+                        <%= heroe.planetaOrigen %>
+                    </td>
+                    <td>
+                        <%= heroe.debilidad %>
+                    </td>
+                    <td>
+                        <%= heroe.poderes %>
+                    </td>
+
+                </tr>
+
+                <%}); %>
+        </tbody>
+    </table>
+</body>
+
+</html>

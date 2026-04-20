@@ -81,12 +81,12 @@ export const validarHeroe = () => [
         y una longitud maxima de 60
     */
     // se aplica a todo el array
-    body('poderes')
-        .isArray({ min: 1 })
-        .withMessage('El array debe tener al menos un elemento'),
+    // body('poderes')
+    //     .isArray({ min: 1 })
+    //     .withMessage('El array debe tener al menos un elemento'),
 
     // valida cada elemento del array
-    body('poderes.*')
+    body('poderes')
         .notEmpty()
         .withMessage('El superheroe debe tener al menos 1 poder')
         .trim() // elimina los espacion en blanco al inicio y al final

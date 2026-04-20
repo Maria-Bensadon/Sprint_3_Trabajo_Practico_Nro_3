@@ -18,9 +18,10 @@ import {
 } from '../controllers/superHeroControllers.mjs';
 
 // se importa validarHeroe -------------------------
-import { validarHeroe } from "../validation/validationRules.mjs"; 
-import { handleValidationErrors } from "../validationResults/handleValidationErrors.mjs"; 
-// ------------------------------------------------------
+import { validarHeroe } from "../validation/validationRules.mjs";
+import { handleValidationErrors, handleValidationErrorsAgregar } from "../validationResults/handleValidationErrors.mjs";
+
+
 const router = express.Router();
 
 /** 
@@ -29,13 +30,19 @@ const router = express.Router();
 // http://localhost:3000/api/heroes
 router.get('/heroes', obtenerTodosLosSuperheroesController);
 
-// // http://localhost:3000/api/heroes/mayores-30
+
+// http://localhost:3000/api/heroes/mayores-30
 router.get('/heroes/mayores-30', obtenerSuperheroesMayoresDe30Controller);
 
-// // http://localhost:3000/api/heroes/:id
+// GET — muestra el formulario vacío
+router.get('/heroes/agregar', (req, res) => {
+  res.render('addSuperhero');
+});
+
+// http://localhost:3000/api/heroes/:id
 router.get('/heroes/:id', obtenerSuperheroePorIdController);
 
-// // http://localhost:3000/api/heroes/buscar/:atributo/:valor
+// http://localhost:3000/api/heroes/buscar/:atributo/:valor
 router.get('/heroes/buscar/:atributo/:valor', buscarSuperheroesPorAtributoController);
 
 
@@ -47,8 +54,11 @@ router.get('/heroes/buscar/:atributo/:valor', buscarSuperheroesPorAtributoContro
 /** 
  * Endpoint POST
 */
-// http://localhost:3000/api/heroes/crear-superheroe
-router.post('/heroes/crear-superheroe', validarHeroe(), handleValidationErrors, crearSuperheroeController);
+// http://localhost:3000/api/heroes/agregar
+router.post('/heroes/agregar', (req, res, next) => {
+  console.log('POST recibido:', req.body);
+  next();
+}, validarHeroe(), handleValidationErrorsAgregar, crearSuperheroeController);
 
 /** 
  * Endpoint PUT
