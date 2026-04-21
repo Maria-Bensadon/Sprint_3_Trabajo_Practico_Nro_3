@@ -7,6 +7,7 @@
 </head>
 
 <body>
+    <!---------------- Etapa 2: Crear Plantillas Básicas en EJS ---------------->
     <h1>Lista de Superheroes</h1>
 
     <table border="1">
@@ -41,12 +42,38 @@
                     <td>
                         <%= heroe.poderes %>
                     </td>
+                    <td>
+                        <a href="/api/heroes/<%= heroe._id %>/editar">Editar</a </td>
+                    <td>
+                        <!--
+                            No hay un formulario para el metodo delete. 
+                            por lo que el boton debe estar dentro de <fomr> (formulario)
+                            el cual en action tendra la estructura del edit superhero
 
+                            <%= heroe._id %> Se utiliza el escape de datos para evitar riesgos 
+                            de seguridad. Regla práctica:
+                                • Datos que vienen del usuario → siempre <%= ...  %>
+                                • HTML que del programador, debido a ser de confianza → <%- ...  %> 
+
+                            ?_method=DELETE = convertira la solicitud post en delete
+                            -----------------------------------------------------------
+                            a su vez se realiza la delegacion de eventos, cuando ocurra el 
+                            click, se mostrara la consulta para verificar la decision de eliminar
+                            el superheroe seleccionado. 
+                            -----------------------------------------------------------
+                            cada boton se mostrara al lado de cada superheroe
+                        -->
+                        <form action="/api/heroes/<%= heroe._id %>?_method=DELETE" method="POST">
+                            <button type="submit"
+                                onclick="return confirm('¿Seguro que querés eliminar este superhéroe?')">Eliminar</button>
+                        </form>
+                    </td>
                 </tr>
 
                 <%}); %>
         </tbody>
     </table>
+
 </body>
 
 </html>

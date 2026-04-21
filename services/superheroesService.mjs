@@ -64,6 +64,10 @@ export async function actualizarSuperheroe(id, datosActualizados) {
 
 }
 
+export async function obtenerIdParaEditar(id) {
+  return await superHeroRepository.editarHeroe(id); 
+}
+
 // ---------------- Metodo DELETE -----------------------
 
 // metodo para eliminar un superheroe por id

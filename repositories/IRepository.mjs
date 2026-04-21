@@ -61,10 +61,16 @@ class IRepository {
         throw new Error(`Método 'crearHeroe()' no implementado`);
     }
 
-    // sexto metodo --- PUT
+    // sexto metodo a) --- PUT
     actualizarHeroe() {
 
         throw new Error(`Método 'actualizarHeroe()' no implementado`);
+    }
+
+    // sexto metodo b) --- GET
+    editarHeroe() {
+
+        throw new Error(`Método 'editarHeroe()' no implementado`);
     }
 
     // septimo metodo --- DELETE

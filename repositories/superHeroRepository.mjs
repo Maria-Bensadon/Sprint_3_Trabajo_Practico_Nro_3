@@ -121,6 +121,9 @@ class superHeroRepository extends IRepository {
 
   }
 
+  async editarHeroePorId (id) {
+    return await superHero.findById(id);
+  }
   // ------------------------------------------------------
 
   // ---------------- Metodo DELETE -----------------------

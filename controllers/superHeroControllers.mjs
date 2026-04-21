@@ -41,6 +41,7 @@ import { renderizarListaSuperheroes, renderizarSuperheroe } from "../views/respo
 
 // --------------------- Metodo GET -------------------------------
 // 1) OBTENER SUPERHEROES POR ID
+// Para Postman — devuelve JSON
 export async function obtenerSuperheroePorIdController(req, res) {
 
   try {
@@ -90,6 +91,7 @@ export async function obtenerSuperheroePorIdController(req, res) {
 
 
 // 2) OBTENER TODOS LOS SUPERHEROES
+// Para Postman — devuelve JSON
 export async function obtenerTodosLosSuperheroesController(req, res) {
 
   try {
@@ -112,6 +114,7 @@ export async function obtenerTodosLosSuperheroesController(req, res) {
 
 
 // 3) BUSCAR SUPERHEROES POR ATRIBUTO
+// Para Postman — devuelve JSON
 export async function buscarSuperheroesPorAtributoController(req, res) {
 
   try {
@@ -146,6 +149,7 @@ export async function buscarSuperheroesPorAtributoController(req, res) {
 
 
 // 4) OBTENER SUPERHEROES MAYORES DE 30 AÑOS
+// Para Postman — devuelve JSON
 export async function obtenerSuperheroesMayoresDe30Controller(req, res) {
 
   try {
@@ -219,7 +223,7 @@ export async function crearSuperheroeController(req, res) {
 
     }
 
-    // 200 OK
+    // redirige al dashboard despues de actualizar
     res.redirect('/api/heroes');
   }
 
@@ -233,7 +237,7 @@ export async function crearSuperheroeController(req, res) {
 
 // ----------------------- Metodo PUT ---------------------------------
 
-// 6) METODO PARA ACTUALIZAR UN SUPERHEROE
+// 6) a) (PUT) - METODO PARA ACTUALIZAR UN SUPERHEROE
 export async function actualizarSuperheroeController(req, res) {
 
   try {
@@ -241,27 +245,33 @@ export async function actualizarSuperheroeController(req, res) {
     const id = req.params.id;
     const datosActualizados = req.body;
 
+    /*
+      la informacion llega como texto (String), la funcion split()
+      separa las palabras por "," y el metodo map elimina los espacios 
+      en blanco (.trim()); 
+    */
+    if (typeof datosActualizados.poderes === "string") {
+      datosActualizados.poderes = datosActualizados.poderes.split(",").map(p => p.trim());
+    }
+
+    if (typeof datosActualizados.aliados === "string") {
+      datosActualizados.aliados = datosActualizados.aliados.split(",").map(p => p.trim());
+    }
+
+    if (typeof datosActualizados.enemigos === "string") {
+      datosActualizados.enemigos = datosActualizados.enemigos.split(",").map(p => p.trim());
+    }
     // const datos = req.body; 
 
     const superheroe = await actualizarSuperheroe(id, datosActualizados);
 
     // error 404 por no encontrar id
-    if (!id) {
-
-      return res.status(404).send({ mensaje: `No se el superheroe por Id para actualizar` });
-
+    if (!superheroe) {
+      return res.status(404).send({ mensaje: `No se encontro el superheroe para actualizar` });
     }
 
-    // error 404 por no encontrar body?
-    if (!datosActualizados) {
-
-      return res.status(404).send({ mensaje: `No se pudo actualizar el superheroe` });
-
-    }
-
-    // 200 OK
-    const superheroeFormateado = renderizarSuperheroe(superheroe);
-    res.status(200).json(superheroeFormateado);
+    // redirige al dashboard despues de actualizar
+    res.redirect('/api/heroes');
 
   } catch (error) {
 
@@ -270,7 +280,24 @@ export async function actualizarSuperheroeController(req, res) {
   }
 
 }
+// 6) b) (GET) - BUSQUEDA DEL SUPERHEROE POR ID PARA EL MOSTRAR EL FORMULARIO PRECARGADO 
 
+export async function obtenerSuperheroePorIdEditarController(req, res) {
+  try {
+    // se extrae el id de los parametros
+    const id = req.params.id;
+    const superheroe = await obtenerSuperheroePorId(id);
+
+    res.render('editSuperhero', { superheroe });
+  }
+
+  catch (error) {
+
+    // error 500
+    res.status(500).send({ mensaje: `Error al crear el superhéroe`, error: error.message });
+
+  }
+}
 
 // ---------------------- Metodo DELETE ---------------------------------
 

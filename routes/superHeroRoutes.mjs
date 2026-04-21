@@ -13,7 +13,8 @@ import {
   buscarSuperheroesPorAtributoController, crearSuperheroeController,
   eliminarSuperheroePorIdController,
   eliminarSuperheroePorSuNombreController,
-  obtenerSuperheroePorIdController, obtenerSuperheroesMayoresDe30Controller,
+  obtenerSuperheroePorIdController, obtenerSuperheroePorIdEditarController,
+  obtenerSuperheroesMayoresDe30Controller,
   obtenerTodosLosSuperheroesController
 } from '../controllers/superHeroControllers.mjs';
 
@@ -34,10 +35,13 @@ router.get('/heroes', obtenerTodosLosSuperheroesController);
 // http://localhost:3000/api/heroes/mayores-30
 router.get('/heroes/mayores-30', obtenerSuperheroesMayoresDe30Controller);
 
-// GET — muestra el formulario vacío
+// GET - AGREGAR —> muestra el formulario vacío
 router.get('/heroes/agregar', (req, res) => {
   res.render('addSuperhero');
 });
+
+// GET - EDITAR —> recibe los datos de la request
+router.get('/heroes/:id/editar', obtenerSuperheroePorIdEditarController);
 
 // http://localhost:3000/api/heroes/:id
 router.get('/heroes/:id', obtenerSuperheroePorIdController);
@@ -63,8 +67,11 @@ router.post('/heroes/agregar', (req, res, next) => {
 /** 
  * Endpoint PUT
 */
-// http://localhost:3000/api/heroes/:id
-router.put('/heroes/:id', validarHeroe(), handleValidationErrors, actualizarSuperheroeController);
+// http://localhost:3000/api/heroes/:id/editar
+router.put('/heroes/:id/editar', (req, res, next) => {
+  console.log(`PUT recibido: `, req.body);
+  next();
+}, validarHeroe(), handleValidationErrors, actualizarSuperheroeController);
 
 /** 
  * Endpoints DELETE
