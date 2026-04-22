@@ -3,6 +3,7 @@
 
 <head>
     <meta charset=" UTF-8 ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DB Superheroes</title>
 </head>
 
@@ -19,10 +20,11 @@
                 <th>Planeta de Origen</th>
                 <th>Debilidad</th>
                 <th>Poderes</th>
+                <th>Aliados</th>
             </tr>
         </thead>
         <tbody>
-            <% superheroes.forEach(heroe=> {%>
+            <% superheroes.forEach(heroe=> { %>
                 <tr>
                     <td>
                         <%= heroe.nombreSuperHeroe %>
@@ -52,8 +54,10 @@
 
                             <%= heroe._id %> Se utiliza el escape de datos para evitar riesgos 
                             de seguridad. Regla práctica:
-                                • Datos que vienen del usuario → siempre <%= ...  %>
-                                • HTML que del programador, debido a ser de confianza → <%- ...  %> 
+                                • Datos que vienen del usuario → siempre <%= %>
+                                • HTML que del programador, debido a ser de confianza → <%- %> 
+                                • Lógica de control (sin el guion ni el igual) -> <% %> 
+                                (bucles, condicionales, cierres de llaves).
 
                             ?_method=DELETE = convertira la solicitud post en delete
                             -----------------------------------------------------------
@@ -70,7 +74,7 @@
                     </td>
                 </tr>
 
-                <%}); %>
+                <% }); %>
         </tbody>
     </table>
 

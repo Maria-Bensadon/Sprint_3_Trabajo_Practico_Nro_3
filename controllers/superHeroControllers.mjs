@@ -317,9 +317,7 @@ export async function eliminarSuperheroePorIdController(req, res) {
     }
     // ---------------------------------------------------------------------------------
 
-    //200 OK - lista sin superheroe ---------------------------------------
-    const superheroeFormateado = renderizarSuperheroe(superheroe)
-    res.status(200).json(superheroeFormateado);
+    res.redirect('/api/heroes');
 
 
   } catch (error) {

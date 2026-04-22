@@ -92,6 +92,24 @@ router.delete('/heroes/:id', eliminarSuperheroePorIdController);
 export default router;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 [
   {
@@ -167,3 +185,20 @@ export default router;
 ]
   
 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
