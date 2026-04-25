@@ -41,10 +41,6 @@ y equivocaciones de los usuarios, volviendolo mas robusto.
 
 ### Flujo
 
-
-holaaa
-
-
 <details> 
 SPRINT 3 - TP NRO 2 ---------------------------------------------------------------------
 Se aplica el Middleware Express-Validator en los métodos PUT y POST, para
@@ -84,32 +80,35 @@ estructuran como va a ser visualizada la respuesta por el cliente o usuario.
 
 ### Estructura del Trabajo Práctico
 
-Sprint_3_TP_Nro_2-/
+Sprint_3_TP_Nro_3/
     ├── config/
-    │   └── dbConfig.mjs             # Configuración y conexión a la base de datos (Paso 1)
+    │   └── dbConfig.mjs             # Configuración y conexión a la base de datos 
     ├── controllers/
-    │   └── superHeroControllers.mjs  # Gestión de solicitudes HTTP y respuestas (Paso 5)
+    │   └── superHeroControllers.mjs  # Gestión de solicitudes HTTP y respuestas 
     ├── models/
-    │   └── superHero.mjs            # Definición del esquema de Mongoose (Paso 2)
+    │   └── superHero.mjs            # Definición del esquema de Mongoose 
     ├── node_modules/                # Dependencias instaladas (npm)
     ├── repositories/
-    │   ├── IRepository.mjs          # Interfaz / Clase base para el repositorio (Paso 3 - a)
-    │   └── superHeroRepository.mjs  # Lógica de acceso a datos (Paso 3 - b)
+    │   ├── IRepository.mjs          # Interfaz / Clase base para el repositorio
+    │   └── superHeroRepository.mjs  # Lógica de acceso a datos
     ├── routes/
-    │   └── superHeroRoutes.mjs      # Definición de endpoints y rutas API (Paso 7)
+    │   └── superHeroRoutes.mjs      # Definición de endpoints y rutas API
     ├── services/
-    │   └── superheroesService.mjs   # Lógica de negocio e intermediario (Paso 4)
+    │   └── superheroesService.mjs   # Lógica de negocio e intermediario 
     ├── validation/
-    │   └── validationRules.mjs      # Reglas de validacion (Paso 9)
+    │   └── validationRules.mjs      # Reglas de validacion
     ├── validationResults/
-    │   └── handleValidationErrors.mjs   # Resultado de la validacion realizada (Paso 10)
+    │   └── handleValidationErrors.mjs   # Resultado de la validacion realizada 
     ├── views/
-    │   └── responseView.mjs         # Formateo de salida de datos para el cliente (Paso 6)
+    │   └── responseView.mjs         # Formateo de salida de datos para el cliente
+    |   └── dashboard.ejs            # Vista Principal de salida de datos para el cliente
+    |   └── addSuperhero.ejs         # Formulario para agregar superheroes
+    |   └── editSuperhero.ejs        # Formulario para editar superheroes 
     ├── .gitignore                   # Archivos y carpetas excluidos de Git
     ├── package-lock.json            # Historial exacto de versiones de dependencias
     ├── package.json                 # Configuración del proyecto y scripts
-    ├── README.md                    # Documentación general del proyecto (Paso 11)
-    ├── server.mjs                   # Punto de entrada y arranque del servidor (Paso 8)
+    ├── README.md                    # Documentación general del proyecto
+    ├── server.mjs                   # Punto de entrada y arranque del servidor 
     └── Sprint 3 Documentacion V1.0.1.pdf  # Documentación
 
 *** La numeracion de los pasos, corresponde al orden de desarrollo del trabajo practico realizado.

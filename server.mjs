@@ -30,7 +30,7 @@ const PORT = process.env.PORT || 3000;
 
 
 //--------------------------------------------
-// Se establece el motor de plantillas ejs
+// Paso 11: Se establece el motor de plantillas ejs
 server.set('view engine','ejs');
 // -------------------------------------------
 
