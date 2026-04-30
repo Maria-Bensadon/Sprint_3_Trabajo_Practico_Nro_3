@@ -41,6 +41,24 @@ y equivocaciones de los usuarios, volviendolo mas robusto.
 
 ### Flujo
 
+Primero se instaló el motor de plantillas EJS, y se lo estableció dentro del server para Express sepa que el motor EJS se va a utilizar y las extensiones que debe buscar. 
+Luego, en la carpeta de views se crea la primera plantilla llamada dashboard.ejs. Es esta plantilla, la que va a renderizar la información en la pantalla del navegador cuando se acceda a la ruta principal.
+Para que la información se muestre en el dashboard, se cambió la response en el controlador con el siguiente codigo: res.render('dashboard', {superheroes}). 
+En esta linea indicamos al controller que va a usar la plantilla EJS (dashboard.ejs) para mostrar la información. Además, permitimos a través de la variable superheroes que la plantilla EJS tenga acceso a los datos obtenidos desde MongoDB. 
+En la plantilla dashboard, utilizamos una tabla para mostrar los datos de forma ordenada y el método forEach() el cual recorre elemento por elemento del array superheroes . Es posible usar estos métodos porque EJS permite escribir y ejecutar JavaScript.
+Por cada superhéroe, se utilizará una fila en la tabla (<tr>), en la que cada propiedad o atributo se mostrará en una celda (<td>). 
+Finalizada cada fila de cada superhéroe, se agregará otras dos celdas donde se ubicarán: 
+•	botón para "Editar" cada uno de los héroes. Al botón se le asignará una URL dinámica, a la cual según sea el id correspondiente, podrá editar uno u otro superhéroe según corresponda. 
+•	Botón “Eliminar”, el cual será especifico a cada superhéroe. 
+Para las funciones de “Agregar Superhéroe” y “Editar Superhéroe” se crearon formularios en plantillas EJS diferentes, llamadas: addSuperhero.ejs y editSuperhero.ejs.
+En addSuperhero.ejs, el usuario deberá llenar todos los campos cumpliendo con el esquema y los requerimientos correspondientes. 
+En la plantilla de editSuperhero.ejs, los valores de los campos estarán precargados al definir el valor del input como “objeto.propiedad”. 
+Para las propiedades que tengan estructura de arrays (poderes, aliados, o enemigos) se utilizará el método split()  que obtendrá la cadena o string, y convertirá los datos en elementos tomando como separador o referencia una coma (“,”). 
+El método DELETE no posee plantilla propia porque no necesita mostrar un formulario, es decir, la acción se ejecuta directamente desde el dashboard. 
+Este botón estará dentro de un formulario <form> el cual permitirá recibir un request enviado por el usuario. Al usar la funcion onclick indicamos que en cuanto el usuario haga click en el botón eliminar, retornará utilizando la funcion confirm() un mensaje de verificación antes de eliminar el superhéroe seleccionado. 
+
+
+
 <details> 
 SPRINT 3 - TP NRO 2 ---------------------------------------------------------------------
 Se aplica el Middleware Express-Validator en los métodos PUT y POST, para
