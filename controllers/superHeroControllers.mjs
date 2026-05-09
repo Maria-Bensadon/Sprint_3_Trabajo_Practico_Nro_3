@@ -212,7 +212,6 @@ export async function crearSuperheroeController(req, res) {
       datos.enemigos = datos.enemigos.split(",").map(p => p.trim());
     }
 
-    // Se busca el superheroe
     const superheroe = await crearSuperheroe(datos);
     console.log('Superhéroe creado:', superheroe);
 

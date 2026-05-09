@@ -66,7 +66,7 @@ export const validarHeroe = () => [
 
     /**
         edad debe validarse que sea requerido, que sea un
-        numero, no tenga espacios en blanco(trim), valor 
+        numero, se eliminan los espacios en blanco(trim), valor 
         minimo 0 (no admite edad negativa)
      */
     body('edad')

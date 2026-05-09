@@ -106,6 +106,7 @@ class superHeroRepository extends IRepository {
   async crearHeroe(datos) {
 
     //console.log(`se crea un superheroe`); 
+    
     return await superHero.create(datos);
 
   }
@@ -116,14 +117,12 @@ class superHeroRepository extends IRepository {
 
   async actualizarHeroe(id, datosActualizados) {
 
+    // busca el superheroe por ID y actualiza los datos en la DB
     //console.log(`Se actualiza a:`, id); 
     return await superHero.findByIdAndUpdate(id, datosActualizados);
 
   }
 
-  async editarHeroePorId (id) {
-    return await superHero.findById(id);
-  }
   // ------------------------------------------------------
 
   // ---------------- Metodo DELETE -----------------------
