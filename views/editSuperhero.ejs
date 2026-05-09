@@ -72,7 +72,7 @@
 
         ?_method=PUT => convierte la solicitud post en put antes de llegar a la router
     -->
-    <form action="/api/heroes/<%= superheroe._id %>/editar?_method=PUT" method="post">
+    <form action="/api/heroes/<%= superheroe._id %>/editar?_method=PUT" method="post" novalidate>
 
         <!-- 
             value="<%= %>" precarga el campo con el dato actual
